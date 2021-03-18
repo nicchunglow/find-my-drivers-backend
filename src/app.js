@@ -21,7 +21,9 @@ app.use("/locations", locationsRouter);
 
 app.get("/", (req, res) => {
   res.send({
-    0: "GET   /",
+    0: "GET   /locations",
+    1: "POST /locations/create",
+    2: "DELETE /locations",
   });
 });
 
