@@ -28,18 +28,22 @@ describe("Locations", () => {
   beforeEach(async () => {
     const locationData = [
       {
+        locationId: 1,
         coordinates: {
           lat: 10,
           lng: 90.55,
         },
       },
       {
+        locationId: 2,
+
         coordinates: {
           lat: 10,
           lng: 90.55,
         },
       },
       {
+        locationId: 3,
         coordinates: {
           lat: 10,
           lng: 90.55,
@@ -51,9 +55,6 @@ describe("Locations", () => {
   afterEach(async () => {
     jest.resetAllMocks();
     await locationModel.deleteMany();
-  });
-  it("should pass the test", () => {
-    expect(1).toBe(1);
   });
 
   describe("/locations", () => {
@@ -82,6 +83,11 @@ describe("Locations", () => {
         .get("/locations")
         .expect(200);
       expect(coordinates).toMatchObject(mockLocationData);
+    });
+    it("DELETE should delete one location", async () => {
+      const { body: locationId } = await request(app)
+        .delete("/locations/1")
+        .expect(201);
     });
   });
   describe("/create", () => {
