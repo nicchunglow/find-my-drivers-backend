@@ -3,9 +3,7 @@ const router = express.Router();
 const locationModel = require("../models/locations.model");
 
 router.get("/", async (req, res) => {
-  const allLocations = await locationModel
-    .find({}, "locationId coordinates")
-    .select("-_id");
+  const allLocations = await locationModel.find({}).select("-_id");
   res.status(200).send(allLocations);
 });
 
