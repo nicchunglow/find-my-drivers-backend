@@ -8,7 +8,7 @@ const mongoOptions = {
   useCreateIndex: true, // for creating index with unique
 };
 
-const dbName = "FindMyDrivers";
+const dbName = "FindMyDriversDB";
 const dbUrl = process.env.MONGODB_URI || "mongodb://localhost:27017/" + dbName;
 
 const connectDB = async () => {
