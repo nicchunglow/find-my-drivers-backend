@@ -29,20 +29,20 @@ describe("Locations", () => {
     const locationData = [
       {
         coordinates: {
-          lng: 90.55,
           lat: 10,
+          lng: 90.55,
         },
       },
       {
         coordinates: {
-          lng: 90.55,
           lat: 10,
+          lng: 90.55,
         },
       },
       {
         coordinates: {
-          lng: 90.55,
           lat: 10,
+          lng: 90.55,
         },
       },
     ];
@@ -61,26 +61,41 @@ describe("Locations", () => {
       const mockLocationData = [
         {
           coordinates: {
-            lng: 90.55,
             lat: 10,
+            lng: 90.55,
           },
         },
         {
           coordinates: {
-            lng: 90.55,
             lat: 10,
+            lng: 90.55,
           },
         },
         {
           coordinates: {
-            lng: 90.55,
             lat: 10,
+            lng: 90.55,
           },
         },
       ];
       const { body: coordinates } = await request(app)
         .get("/locations")
         .expect(200);
+      expect(coordinates).toMatchObject(mockLocationData);
+    });
+  });
+  describe("/create", () => {
+    it("POST should post one location", async () => {
+      const mockLocationData = {
+        coordinates: {
+          lat: 10,
+          lng: 90.55,
+        },
+      };
+      const { body: coordinates } = await request(app)
+        .post("/locations/create")
+        .send(mockLocationData)
+        .expect(201);
       expect(coordinates).toMatchObject(mockLocationData);
     });
   });
