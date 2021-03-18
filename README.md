@@ -14,6 +14,8 @@
 
 - [Package Issues](#Package-issues)
 
+- [Improvements](#Improvements)
+
 #### Introduction
 
 This project was build on Express and node.js, using mongoDB as our database.
