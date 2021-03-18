@@ -4,7 +4,7 @@ const locationModel = require("../models/locations.model");
 
 router.get("/", async (req, res) => {
   const allLocations = await locationModel
-    .find({}, "coordinates")
+    .find({}, "locationId coordinates")
     .select("-_id");
   res.status(200).send(allLocations);
 });
