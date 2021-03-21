@@ -13,7 +13,6 @@ router.post("/create", async (req, res, next) => {
     err.statusCode = 400;
     next(err);
   }
-  const locationsCount = await locationModel.countDocuments({});
   const locationData = await {
     name: req.body.name,
     coordinates: req.body.coordinates,
