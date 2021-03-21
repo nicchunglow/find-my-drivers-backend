@@ -14,7 +14,7 @@ const coordinatesSchema = {
   },
 };
 const locationSchema = Schema({
-  locationId: {
+  name: {
     type: String,
     required: true,
     unique: true,

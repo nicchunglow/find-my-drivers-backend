@@ -15,7 +15,7 @@ router.post("/create", async (req, res, next) => {
   }
   const locationsCount = await locationModel.countDocuments({});
   const locationData = await {
-    locationId: locationsCount + 1,
+    name: req.body.name,
     coordinates: req.body.coordinates,
   };
   const location = new locationModel(locationData);
@@ -25,9 +25,9 @@ router.post("/create", async (req, res, next) => {
   res.status(201).send(newLocation);
 });
 
-router.delete("/:id", async (req, res, next) => {
+router.delete("/", async (req, res, next) => {
   const deletedEvent = await locationModel.findOneAndDelete({
-    locationId: req.params.id,
+    name: req.body.name,
   });
   res.status(201).send(deletedEvent);
 });

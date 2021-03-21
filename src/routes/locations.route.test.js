@@ -9,7 +9,7 @@ mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
 mongoose.set("useUnifiedTopology", true);
 
-describe("Locations", () => {
+describe("locations", () => {
   let mongoServer;
   beforeAll(async () => {
     try {
@@ -28,14 +28,14 @@ describe("Locations", () => {
   beforeEach(async () => {
     const locationData = [
       {
-        locationId: 1,
+        name: "somewhere",
         coordinates: {
           lat: 10,
           lng: 90.55,
         },
       },
       {
-        locationId: 2,
+        name: "Second Place",
 
         coordinates: {
           lat: 10,
@@ -43,7 +43,7 @@ describe("Locations", () => {
         },
       },
       {
-        locationId: 3,
+        name: "New place",
         coordinates: {
           lat: 10,
           lng: 90.55,
@@ -57,42 +57,57 @@ describe("Locations", () => {
     await locationModel.deleteMany();
   });
 
-  describe("/locations", () => {
-    it("GET should retrieve location but with the following key:value pairs: coordinates", async () => {
+  describe("/", () => {
+    it("GET should retrieve location but with the following key:value pairs: name, coordinates", async () => {
       const mockLocationData = [
         {
+          name: "somewhere",
           coordinates: {
             lat: 10,
             lng: 90.55,
           },
         },
         {
+          name: "Second Place",
+
           coordinates: {
             lat: 10,
             lng: 90.55,
           },
         },
         {
+          name: "New place",
           coordinates: {
             lat: 10,
             lng: 90.55,
           },
         },
       ];
-      const { body: coordinates } = await request(app)
-        .get("/locations")
-        .expect(200);
-      expect(coordinates).toMatchObject(mockLocationData);
+      const { body } = await request(app).get("/locations").expect(200);
+      expect(body).toMatchObject(mockLocationData);
     });
     it("DELETE should delete one location", async () => {
-      const { body: locationId } = await request(app)
-        .delete("/locations/1")
+      const mockNameData = {
+        name: "somewhere",
+      };
+      const mockLocationData = {
+        name: "somewhere",
+        coordinates: {
+          lat: 10,
+          lng: 90.55,
+        },
+      };
+      const { body } = await request(app)
+        .delete("/locations")
+        .send(mockNameData)
         .expect(201);
+      expect(body).toMatchObject(mockLocationData);
     });
   });
   describe("/create", () => {
     it("POST should post one location", async () => {
       const mockLocationData = {
+        name: "somewhere new",
         coordinates: {
           lat: 10,
           lng: 90.55,
