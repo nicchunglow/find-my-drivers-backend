@@ -26,7 +26,12 @@ The goal of the backend was to do :
 2. Add new save locations of a user.
 3. delete save locations of a user.
 
-Hence, a model called locations has been created to store only coordinates.
+Hence, a model called locations has been created to store name of saved location and coordinates, with a schema of
+
+```
+{ name: string, coordinates : { lat: number, lng: number } }
+```
+
 The Coordinates are made as sub-schema of the main schema to allow for expansion for more field such as location name, description and etc in the future.
 
 For routes, we are currently using REST api, only GET, POST and DELETE. PUT and PATCH use case are not available at the moment. However, implementation for such use case like changing location name and description can useful with PATCH or PUT in the future.
@@ -38,7 +43,7 @@ nodemon is also used to allow monitoring of script during the development of the
 For code wise, I tried to add testing into the code, hence, the use of supertest, jest and mongodb-memory-server is present. However, I do like to highlight that the test is not concise right now.
 
 Link to Frontend: https://github.com/nicchunglow/find-my-drivers
-A working life demo in available through frontend, hosted on netlify. Do note that the backend was not integrated with the frontend.
+A working life demo in available through frontend, hosted on netlify.
 
 ## Features Demo
 
