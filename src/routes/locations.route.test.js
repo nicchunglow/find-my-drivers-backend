@@ -87,9 +87,7 @@ describe("locations", () => {
       expect(body).toMatchObject(mockLocationData);
     });
     it("DELETE should delete one location", async () => {
-      const mockNameData = {
-        name: "somewhere",
-      };
+      const name = "somewhere";
       const mockLocationData = {
         name: "somewhere",
         coordinates: {
@@ -98,8 +96,7 @@ describe("locations", () => {
         },
       };
       const { body } = await request(app)
-        .delete("/locations")
-        .send(mockNameData)
+        .delete(`/locations/${name}`)
         .expect(201);
       expect(body).toMatchObject(mockLocationData);
     });

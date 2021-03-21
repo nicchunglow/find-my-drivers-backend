@@ -24,9 +24,9 @@ router.post("/create", async (req, res, next) => {
   res.status(201).send(newLocation);
 });
 
-router.delete("/", async (req, res, next) => {
+router.delete("/:name", async (req, res, next) => {
   const deletedEvent = await locationModel.findOneAndDelete({
-    name: req.body.name,
+    name: req.params.name,
   });
   res.status(201).send(deletedEvent);
 });
