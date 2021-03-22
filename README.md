@@ -49,6 +49,7 @@ A working life demo in available through frontend, hosted on netlify.
 
 Working live demo can be accessed at https://find-my-drivers-backend.herokuapp.com/
 The live working demo is hosted on heroku, linked to mongoDB atlas.
+As it is hosted on Heroku, the backend will take some time to spin up on the initial load.
 
 #### Technologies
 
@@ -120,4 +121,5 @@ I would :
 
 1. Add more test with more edge cases to make the code rebust and maintainable.
 2. Add a user route so that there is account access for users and maintaining of individual data used instead of sharing the data.
-   technologies to be implemented with this feature would be jwtoken for authentication, bcrypt for hashing and uuid for unique identifier.
+   technologies to be implemented with this feature would be jwtoken for authentication, bcrypt for hashing and uuid for unique identifier. I would change the unique identifier of the location along with the accounts. 
+ 3. Implement PATCH api call so that people are able to edit their saved data. 
