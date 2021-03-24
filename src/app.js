@@ -2,6 +2,7 @@ require("dotenv");
 const express = require("express");
 const cors = require("cors");
 const locationsRouter = require("./routes/locations.route");
+const driversRouter = require("./routes/drivers.route");
 
 const app = express();
 
@@ -18,12 +19,14 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/locations", locationsRouter);
+app.use("/drivers", driversRouter);
 
 app.get("/", (req, res) => {
   res.send({
     0: "GET   /locations",
     1: "POST /locations/create",
     2: "DELETE /locations",
+    3: "GET /drivers",
   });
 });
 
