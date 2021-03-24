@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
   res.send({
     0: "GET   /locations",
     1: "POST /locations/create",
-    2: "DELETE /locations",
+    2: "DELETE /locations/:name",
     3: "GET /drivers",
   });
 });

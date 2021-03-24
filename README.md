@@ -8,9 +8,13 @@
 
 - [Setup](#Setup)
 
-- [Environment Variables](#Environment-Variables)
-
 - [Availble Scripts](#Available-Scripts)
+
+- [Availble Routes](#Available-Routes)
+
+- [Endpoint Usage](#Endpoint-Usage)
+
+- [Environment Variables](#Environment-Variables)
 
 - [Package Issues](#Package-issues)
 
@@ -31,6 +35,8 @@ Hence, a model called locations has been created to store name of saved location
 ```
 { name: string, coordinates : { lat: number, lng: number } }
 ```
+
+Name is used as an identifier at this stage because the saved locations should be unique in terms of description. Hence, it is being used as the identifier instead.
 
 The Coordinates are made as sub-schema of the main schema to allow for expansion for more field such as location name, description and etc in the future.
 
@@ -103,9 +109,45 @@ For husky, we have a pre-commit to lint our code
 ## Available Routes
 
 ```
-   0: "GET   /locations",
+    0: "GET   /locations",
     1: "POST /locations/create",
-    2: "DELETE /locations",
+    2: "DELETE /locations:name",
+    3: "GET /drivers",
+```
+
+## Endpoint Usage
+
+    0: "GET   /locations",
+
+You can just call this endpoint without any query or params to get all the saved locations.
+
+    1: "POST /locations/create",
+
+You save a location, you will require a body with:
+
+```
+{
+    "name": String,
+    "coordinates": {
+        "lat": number,
+        "lng": number
+    }
+}
+```
+
+    2: "DELETE /locations/:name"
+
+To delete, you will need to add the params for the endpoint
+
+    3: "GET /drivers"
+
+This is a proxy endpoint to get all the drivers in the user location.
+You will need three queries
+
+```
+    req.query.count;
+    req.query.latitude;
+    req.query.longitude;
 ```
 
 ## Environment Variables
@@ -121,5 +163,5 @@ I would :
 
 1. Add more test with more edge cases to make the code rebust and maintainable.
 2. Add a user route so that there is account access for users and maintaining of individual data used instead of sharing the data.
-   technologies to be implemented with this feature would be jwtoken for authentication, bcrypt for hashing and uuid for unique identifier. I would change the unique identifier of the location along with the accounts. 
- 3. Implement PATCH api call so that people are able to edit their saved data. 
+   technologies to be implemented with this feature would be jwtoken for authentication, bcrypt for hashing and uuid for unique identifier. I would change the unique identifier of the location along with the accounts.
+3. Implement PATCH api call so that people are able to edit their saved data.
