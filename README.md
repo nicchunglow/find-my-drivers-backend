@@ -59,6 +59,7 @@ As it is hosted on Heroku, the backend will take some time to spin up on the ini
 
 #### Technologies
 
+    "axios": "^0.21.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
