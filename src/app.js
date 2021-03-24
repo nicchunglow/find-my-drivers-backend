@@ -15,8 +15,8 @@ const corsOptions = {
   allowedHeaders: "content-type",
 };
 
-app.use(express.json());
 app.use(cors(corsOptions));
+app.use(express.json());
 
 app.use("/locations", locationsRouter);
 app.use("/drivers", driversRouter);
